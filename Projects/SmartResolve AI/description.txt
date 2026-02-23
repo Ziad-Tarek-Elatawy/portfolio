@@ -1,0 +1,2 @@
+An AI-powered platform utilizing Advanced NLP to automatically classify, prioritize, and route complaints and suggestions based on sentiment analysis and topic detection.
+Streamlines administrative workflows by reducing manual overhead and transforming raw feedback into actionable, data-driven insights for better decision-making.

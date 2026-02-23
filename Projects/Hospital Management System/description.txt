@@ -1,0 +1,1 @@
+Desktop application for managing hospital departments, staff, and patients with JSON data persistence.

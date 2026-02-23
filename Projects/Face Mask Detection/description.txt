@@ -1,0 +1,1 @@
+Automated surveillance system using CNNs to detect face masks in real-time video feeds for safety compliance.

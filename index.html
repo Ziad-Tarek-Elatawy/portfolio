@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Engineer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <canvas id="matrix-canvas"></canvas>
+
+    <header>
+        <nav>
+            <div class="logo">&lt;Ziad.AI /&gt;</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-container container">
+            <div class="hero-content fade-in-left">
+                <h1 class="glitch" data-text="Hello 👋, I'm Ziad Tarek"><span class="greeting-text">Hello 👋, I'm</span>
+                    <br> <span class="highlight-name">Ziad
+                        Tarek</span>
+                </h1>
+                <h2>I am an <span class="typing-text"></span></h2>
+                <p>Building Scalable Generative AI Architectures & Multi-Agent Systems.
+                    Specializing in Arabic LLMs and RAG frameworks to transform complex data into actionable
+                    intelligence.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Check My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+            <div class="hero-visual fade-in-right">
+                <div class="image-wrapper">
+                    <img src="hero-img.png" alt="Profile of AI Engineer" class="profile-img">
+                    <div class="visual-circle"></div>
+                    <div class="visual-circle circle-2"></div>
+                </div>
+                <div class="hero-social-cards">
+                    <a href="CV.pdf" target="_blank" class="social-card cv-text" aria-label="Resume/CV">
+                        CV
+                    </a>
+                    <a href="https://linkedin.com/in/ziad-tarek2/" target="_blank" class="social-card"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:eng.ziadtarek1@gmail.com" target="_blank" class="social-card" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/Ziad-Tarek-Elatawy" target="_blank" class="social-card"
+                        aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://wa.me/201094413272" target="_blank" class="social-card" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>My journey in the world of technology began with a fascination for how data can be transformed
+                        from raw numbers into intelligent decisions. Today, as an AI and Data Science Engineer, I sit at
+                        the intersection of complex Python-based architectures and strategic business value.</p>
+
+                    <div class="about-section">
+                        <h3>The Vision</h3>
+                        <p>I don’t just build models; I architect ecosystems. My core expertise lies in Natural Language
+                            Processing (NLP) and Large Language Models (LLMs), with a deep-seated commitment to
+                            mastering
+                            Arabic NLP—a niche I believe is the next frontier for AI in our region. Whether it’s
+                            building
+                            advanced RAG pipelines or orchestrating Multi-Agent Systems, my goal is always the same:
+                            ensuring AI provides real, measurable administrative value.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h3>Leading with Purpose</h3>
+                        <p>I believe that great AI requires more than just code; it requires leadership. In my
+                            experience
+                            leading teams of five members on complex projects, I’ve learned how to
+                            bridge
+                            the gap between technical teams and business requirements. I thrive on delegating tasks,
+                            aligning technical goals with project vision, and delivering high-quality, data-driven
+                            insights
+                            that move the needle.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h3>Global Standards, Local Expertise</h3>
+                        <p>With a strong foundation in Information Systems and specialized training from DEPI, I bring a
+                            production-ready mindset to every project. From utilizing MLOps and AWS for scalable
+                            deployments
+                            to managing diverse freelance projects across my entire specialization, I am committed to
+                            continuous growth and excellence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education hidden">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-content fade-in-up">
+                <div class="edu-card">
+                    <div class="edu-logo-wrapper">
+                        <!-- Use the provided local logo -->
+                        <img src="OIP.webp" alt="Damietta University Logo" class="edu-logo">
+                    </div>
+                    <div class="edu-details">
+                        <h3 class="uni-name">Damietta University</h3>
+                        <p class="faculty-name">Faculty of Computers and Artificial Intelligence</p>
+                        <div class="edu-meta">
+                            <span class="degree"><i class="fas fa-graduation-cap"></i> B.Sc. in Information
+                                Systems</span>
+                            <span class="year"><i class="far fa-calendar-alt"></i> 2023 - 2027</span>
+                        </div>
+                        <p class="edu-focus"><strong>Focus:</strong> Natural Language Processing (NLP) & GenAI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid fade-in-up">
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> AI & Generative AI</h3>
+                    <div class="skill-tags">
+                        <span>LLMs</span>
+                        <span>Arabic NLP Specialist</span>
+                        <span>RAG Pipelines</span>
+                        <span>Multi-Agent Systems (CrewAI/LangGraph)</span>
+                        <span>Prompt Engineering</span>
+                        <span>Fine-tuning</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-network-wired"></i> ML & Deep Learning</h3>
+                    <div class="skill-tags">
+                        <span>NLP</span>
+                        <span>Computer Vision (CNNs)</span>
+                        <span>Transformers</span>
+                        <span>Scikit-Learn</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Data Engineering & Analytics</h3>
+                    <div class="skill-tags">
+                        <span>Python (Advanced)</span>
+                        <span>SQL</span>
+                        <span>Pandas</span>
+                        <span>NumPy</span>
+                        <span>Matplotlib</span>
+                        <span>Seaborn</span>
+                        <span>Feature Engineering</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud-upload-alt"></i> Deployment & MLOps</h3>
+                    <div class="skill-tags">
+                        <span>FastAPI</span>
+                        <span>Docker</span>
+                        <span>RESTful APIs</span>
+                        <span>Cloud Infrastructure (AWS)</span>
+                        <span>Model Versioning</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Workflow Automation</h3>
+                    <div class="skill-tags">
+                        <span>n8n (Advanced Workflows)</span>
+                        <span>Git & GitHub</span>
+                        <span>Postman</span>
+                        <span>Linux/Bash</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-sitemap"></i> Architecture & Design</h3>
+                    <div class="skill-tags">
+                        <span>System Design</span>
+                        <span>Scalable AI Architectures</span>
+                        <span>Requirements Analysis</span>
+                        <span>UML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience hidden">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-content fade-in-up">
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>AI & Data Science Trainee <span class="company-name">| DEPI</span></h3>
+                        </div>
+                        <div class="exp-date">
+                            <span class="year"><i class="far fa-calendar-alt"></i> 2026 – Present</span>
+                        </div>
+                    </div>
+                    <div class="exp-details">
+                        <ul>
+                            <li><strong>Projects Leadership:</strong> Acted as a Team Lead for multiple end-to-end AI
+                                projects, managing a team of 5 members to ensure timely delivery, task delegation, and
+                                technical alignment with project requirements.</li>
+                            <li><strong>End-to-End ML Development:</strong> Orchestrated full Machine Learning
+                                workflows, from advanced data preprocessing and feature engineering to model selection,
+                                hyperparameter tuning, and performance evaluation.</li>
+                            <li><strong>Technical Problem Solving:</strong> Architected and implemented data-driven
+                                solutions using Python (Pandas, Scikit-Learn, and LLMs) to solve complex analytical
+                                challenges and provide actionable business insights.</li>
+                            <li><strong>Stakeholder Communication:</strong> Delivered professional technical
+                                presentations and reports, bridging the gap between technical complexity and
+                                administrative value using advanced communication and leadership skills.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">My Services</h2>
+            <div class="services-grid fade-in-up">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Custom AI & LLM Solutions</h3>
+                    <p>Building advanced RAG pipelines, fine-tuning Large Language Models, and developing intelligent
+                        Multi-Agent systems (CrewAI/LangGraph) tailored to your business needs.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Machine Learning & NLP</h3>
+                    <p>Designing and training highly accurate Machine Learning and Deep Learning models for Natural
+                        Language Processing, text analytics, and localized Arabic NLP tasks.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Engineering & Analytics</h3>
+                    <p>Architecting robust data pipelines and performing complex data analytics with Python and Pandas
+                        to drive data-informed decisions.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Workflow Automation & Integrations</h3>
+                    <p>Automating complex business workflows and integrating disparate systems using n8n for maximum
+                        operational efficiency.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>AI Deployment & MLOps</h3>
+                    <p>Transforming AI models from prototypes into scalable, production-ready RESTful APIs using
+                        FastAPI, Docker, and AWS cloud infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-carousel fade-in-up">
+                <!-- Global Navigation Arrows -->
+                <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+
+                <div class="carousel-track">
+                    <!-- Project 1 -->
+                    <div class="carousel-slide">
+                        <div class="slide-header">
+                            <h3 class="slide-title">Face Mask Detection</h3>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="Projects/Face Mask Detection/Picsart_26-02-23_08-50-55-631.jpg"
+                                alt="Face Mask Detection" class="slide-img">
+                        </div>
+                        <div class="slide-info">
+                            <p>Automated surveillance system using CNNs to detect face masks in real-time video feeds
+                                for safety compliance.</p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>OpenCV</span>
+                                <span>TensorFlow</span>
+                                <span>CNN</span>
+                            </div>
+                            <div class="slide-actions">
+                                <a href="#" class="btn primary-btn"><i class="fab fa-github"></i> View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="carousel-slide">
+                        <div class="slide-header">
+                            <h3 class="slide-title">Hospital Management System</h3>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="Projects/Hospital Management System/Picsart_26-02-23_09-00-57-947.jpg"
+                                alt="Hospital Management System" class="slide-img">
+                        </div>
+                        <div class="slide-info">
+                            <p>Desktop application for managing hospital departments, staff, and patients with JSON data
+                                persistence.</p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>OOP</span>
+                                <span>JSON</span>
+                                <span>CLI</span>
+                            </div>
+                            <div class="slide-actions">
+                                <a href="#" class="btn primary-btn"><i class="fab fa-github"></i> View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="carousel-slide">
+                        <div class="slide-header">
+                            <h3 class="slide-title">SmartResolve AI</h3>
+                        </div>
+                        <div class="slide-visual">
+                            <img src="Projects/SmartResolve AI/Picsart_26-02-23_09-03-16-099.jpg" alt="SmartResolve AI"
+                                class="slide-img">
+                        </div>
+                        <div class="slide-info">
+                            <p>An AI-powered platform utilizing Advanced NLP to automatically classify, prioritize, and
+                                route complaints and suggestions based on sentiment analysis and topic detection.
+                                Streamlines administrative workflows and transforms raw feedback into actionable
+                                insights.</p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>NLP</span>
+                                <span>LLMs</span>
+                                <span>Sentiment Analysis</span>
+                            </div>
+                            <div class="slide-actions">
+                                <a href="#" class="btn primary-btn"><i class="fab fa-github"></i> View on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>eng.ziadtarek1@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+20 109 441 3272</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Cairo, Egypt</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/ziad-tarek2/" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Ziad-Tarek-Elatawy" target="_blank"><i
+                                class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                    <!-- Web3Forms Access Key: Using a placeholder, user needs to get their own free key -->
+                    <input type="hidden" name="access_key" value="55029fd8-8e77-4f6b-a9fe-445c981d24e0">
+
+                    <!-- Form Inputs -->
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Message" rows="5" required></textarea>
+
+                    <!-- Web3Forms Options -->
+                    <input type="hidden" name="subject" value="New message from your Portfolio">
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ziad Tarek. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
