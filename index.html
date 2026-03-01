@@ -4,7 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Engineer Portfolio</title>
+    <title>Ziad Tarek | AI Engineer Portfolio</title>
+    <meta name="description"
+        content="Ziad Tarek - AI & Data Science Engineer specializing in NLP, LLMs, and Generative AI Architectures.">
+    <meta property="og:title" content="Ziad Tarek | AI Engineer Portfolio">
+    <meta property="og:description" content="Building Scalable Generative AI Architectures & Multi-Agent Systems.">
+    <meta property="og:image" content="hero-img.png">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -312,85 +318,18 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-carousel fade-in-up">
-                <!-- Global Navigation Arrows -->
+                <!-- Navigation Arrows -->
                 <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
                 <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
 
-                <div class="carousel-track">
-                    <!-- Project 1 -->
-                    <div class="carousel-slide">
-                        <div class="slide-header">
-                            <h3 class="slide-title">Face Mask Detection</h3>
-                        </div>
-                        <div class="slide-visual">
-                            <img src="Projects/Face Mask Detection/Picsart_26-02-23_08-50-55-631.jpg"
-                                alt="Face Mask Detection" class="slide-img">
-                        </div>
-                        <div class="slide-info">
-                            <p>Automated surveillance system using CNNs to detect face masks in real-time video feeds
-                                for safety compliance.</p>
-                            <div class="project-tech">
-                                <span>Python</span>
-                                <span>OpenCV</span>
-                                <span>TensorFlow</span>
-                                <span>CNN</span>
-                            </div>
-                            <div class="slide-actions">
-                                <a href="#" class="btn primary-btn"><i class="fab fa-github"></i> View on GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="carousel-slide">
-                        <div class="slide-header">
-                            <h3 class="slide-title">Hospital Management System</h3>
-                        </div>
-                        <div class="slide-visual">
-                            <img src="Projects/Hospital Management System/Picsart_26-02-23_09-00-57-947.jpg"
-                                alt="Hospital Management System" class="slide-img">
-                        </div>
-                        <div class="slide-info">
-                            <p>Desktop application for managing hospital departments, staff, and patients with JSON data
-                                persistence.</p>
-                            <div class="project-tech">
-                                <span>Python</span>
-                                <span>OOP</span>
-                                <span>JSON</span>
-                                <span>CLI</span>
-                            </div>
-                            <div class="slide-actions">
-                                <a href="#" class="btn primary-btn"><i class="fab fa-github"></i> View on GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="carousel-slide">
-                        <div class="slide-header">
-                            <h3 class="slide-title">SmartResolve AI</h3>
-                        </div>
-                        <div class="slide-visual">
-                            <img src="Projects/SmartResolve AI/Picsart_26-02-23_09-03-16-099.jpg" alt="SmartResolve AI"
-                                class="slide-img">
-                        </div>
-                        <div class="slide-info">
-                            <p>An AI-powered platform utilizing Advanced NLP to automatically classify, prioritize, and
-                                route complaints and suggestions based on sentiment analysis and topic detection.
-                                Streamlines administrative workflows and transforms raw feedback into actionable
-                                insights.</p>
-                            <div class="project-tech">
-                                <span>Python</span>
-                                <span>NLP</span>
-                                <span>LLMs</span>
-                                <span>Sentiment Analysis</span>
-                            </div>
-                            <div class="slide-actions">
-                                <a href="#" class="btn primary-btn"><i class="fab fa-github"></i> View on GitHub</a>
-                            </div>
-                        </div>
+                <div class="carousel-viewport">
+                    <div class="carousel-track" id="projects-track">
+                        <!-- Projects will be injected here dynamically by script.js -->
                     </div>
                 </div>
+
+                <!-- Dots Navigation -->
+                <div class="carousel-dots"></div>
             </div>
         </div>
     </section>
@@ -412,11 +351,25 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Cairo, Egypt</span>
                     </div>
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/ziad-tarek2/" target="_blank"><i
-                                class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Ziad-Tarek-Elatawy" target="_blank"><i
-                                class="fab fa-github"></i></a>
+                    <div class="hero-social-cards contact-social-cards">
+                        <a href="CV.pdf?v=2" target="_blank" class="social-card cv-text" aria-label="Resume/CV">
+                            CV
+                        </a>
+                        <a href="https://linkedin.com/in/ziad-tarek2/" target="_blank" class="social-card"
+                            aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:eng.ziadtarek1@gmail.com" target="_blank" class="social-card"
+                            aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://github.com/Ziad-Tarek-Elatawy" target="_blank" class="social-card"
+                            aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://wa.me/201094413272" target="_blank" class="social-card" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
                 <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">

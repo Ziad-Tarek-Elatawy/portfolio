@@ -81,7 +81,6 @@ const observerOptions = {
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        console.log(entry)
         if (entry.isIntersecting) {
             entry.target.classList.add('show');
         } else {
@@ -118,7 +117,19 @@ for (let x = 0; x < columns; x++) {
     rainDrops[x] = 1;
 }
 
-const draw = () => {
+const fps = 15;
+const frameInterval = 1000 / fps;
+let lastDrawTime = 0;
+
+const draw = (currentTime) => {
+    requestAnimationFrame(draw);
+
+    if (!currentTime) currentTime = performance.now();
+    const deltaTime = currentTime - lastDrawTime;
+
+    if (deltaTime < frameInterval) return;
+    lastDrawTime = currentTime - (deltaTime % frameInterval);
+
     ctx.fillStyle = 'rgba(11, 13, 23, 0.05)'; // Fade effect
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -136,103 +147,149 @@ const draw = () => {
     }
 };
 
-setInterval(draw, 70);
+requestAnimationFrame(draw);
 
 // Resize canvas on window resize
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    goToSlide(currentIndex); // Recalculate slide positioning for active carousel card width 
 });
 
-// --- Projects 3D Wheel Logic --- //
-const track = document.querySelector('.carousel-track');
-const slides = document.querySelectorAll('.carousel-slide');
+// --- Projects Data & Carousel Logic --- //
+const projectsData = [
+    {
+        title: "Ford GoBike Interactive Dashboard",
+        description: "An end-to-end Interactive Dashboard to analyze and visualize the Ford GoBike urban mobility data using Plotly and Dash, transforming raw trip data into a dynamic web application.",
+        tech: ["Python", "Plotly", "Dash", "EDA", "Data Engineering"],
+        image: "Projects/Ford GoBike Interactive Dashboard/Dashboard.png",
+        link: "#"
+    },
+    {
+        title: "Face Mask Detection",
+        description: "Automated surveillance system using CNNs to detect face masks in real-time video feeds for safety compliance.",
+        tech: ["Python", "OpenCV", "TensorFlow", "CNN"],
+        image: "Projects/Face Mask Detection/Face Mask Detection screenshot.jpg",
+        link: "#"
+    },
+    {
+        title: "SmartResolve AI",
+        description: "An AI-powered platform utilizing Advanced NLP to automatically classify, prioritize, and route complaints and suggestions based on sentiment analysis and topic detection.",
+        tech: ["Python", "NLP", "LLMs", "Sentiment Analysis"],
+        image: "Projects/SmartResolve AI/SmartResolve AI screenshot.jpg",
+        link: "#"
+    },
+    {
+        title: "Hospital Management System",
+        description: "Desktop application for managing hospital departments, staff, and patients with JSON data persistence.",
+        tech: ["Python", "OOP", "JSON", "CLI"],
+        image: "Projects/Hospital Management System/HMS screenshot.jpg",
+        link: "#"
+    }
+];
+
+const track = document.getElementById('projects-track');
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
+const dotsContainer = document.querySelector('.carousel-dots');
 
-let currentAngle = 0;
+// Render Projects
+if (track) {
+    projectsData.forEach(project => {
+        const techSpans = project.tech.map(t => `<span>${t}</span>`).join('');
+        const slideHTML = `
+            <div class="carousel-slide">
+                <div class="slide-visual">
+                    <img src="${project.image}" alt="${project.title}" class="slide-img">
+                </div>
+                <div class="slide-info">
+                    <h3 class="slide-title">${project.title}</h3>
+                    <p>${project.description}</p>
+                    <div class="project-tech">
+                        ${techSpans}
+                    </div>
+                </div>
+            </div>
+        `;
+        track.insertAdjacentHTML('beforeend', slideHTML);
+    });
+}
+
+const slides = document.querySelectorAll('.carousel-slide');
+let currentIndex = 0;
 const numSlides = slides.length;
-// We assign a 360 degree space divided by the number of projects.
-// e.g., 3 slides = 120deg difference.
-const angleStep = 360 / numSlides;
 
-// Radius calculation: Distance from the center of the wheel to the slides.
-// We use a base width of 450px. You can adjust this for wider screens.
-let radius = Math.round((450 / 2) / Math.tan(Math.PI / numSlides));
-
-function initWheel() {
-    // If there's only 1 or 2 slides, the math can look flat, but we add a default radius.
-    if (numSlides <= 2) {
-        radius = 450;
+// Create dots
+function createDots() {
+    if (!dotsContainer) return;
+    for (let i = 0; i < numSlides; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
     }
-
-    slides.forEach((slide, index) => {
-        const slideAngle = index * angleStep;
-        slide.style.transform = `rotateY(${slideAngle}deg) translateZ(${radius}px)`;
-        // Set the first slide as active
-        if (index === 0) slide.classList.add('active');
-    });
-
-    // Reset track rotation
-    track.style.transform = `translateZ(-${radius}px) rotateY(0deg)`;
 }
 
-function rotateWheel(direction) {
+// Update dots active state
+function updateDots() {
+    if (!dotsContainer) return;
+    const dots = dotsContainer.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+    });
+}
+
+// Go to a specific slide
+function goToSlide(index) {
     if (numSlides === 0) return;
+    if (index < 0) index = numSlides - 1;
+    if (index >= numSlides) index = 0;
+    currentIndex = index;
 
-    if (direction === 'next') {
-        currentAngle -= angleStep;
-    } else if (direction === 'prev') {
-        currentAngle += angleStep;
+    const allSlides = document.querySelectorAll('.carousel-slide');
+
+    // Clear old classes
+    allSlides.forEach(slide => {
+        slide.classList.remove('active', 'prev', 'next');
+    });
+
+    // Circular calculations
+    const prevIndex = (currentIndex - 1 + numSlides) % numSlides;
+    const nextIndex = (currentIndex + 1) % numSlides;
+
+    // Apply classes for 3D Circle effect
+    if (allSlides[currentIndex]) allSlides[currentIndex].classList.add('active');
+
+    // Only apply prev/next if we have more than 1 slide
+    if (numSlides > 1) {
+        if (allSlides[prevIndex]) allSlides[prevIndex].classList.add('prev');
+        // Only apply next if we have more than 2 slides to avoid overlapping with prev
+        if (numSlides > 2 && allSlides[nextIndex]) allSlides[nextIndex].classList.add('next');
     }
 
-    // Apply the rotation
-    track.style.transform = `translateZ(-${radius}px) rotateY(${currentAngle}deg)`;
+    updateDots();
+}
 
-    // Calculate active slide index
-    // currentAngle might be negative, so we use modulo math to find the positive index
-    let activeIndex = Math.round((currentAngle / angleStep) % numSlides);
-    if (activeIndex < 0) {
-        activeIndex += numSlides; // Handle negative wrapping
-    }
-    // Because rotating "next" means negative angle, the actual slide index moves forward
-    activeIndex = (numSlides - activeIndex) % numSlides;
+// Event listeners
+if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
 
-    slides.forEach((slide, index) => {
-        if (index === activeIndex) {
-            slide.classList.add('active');
-        } else {
-            slide.classList.remove('active');
-        }
+// Initialize
+createDots();
+goToSlide(0); // Trigger first visual positioning
+
+// Auto-play (optional - subtle, every 6 seconds)
+let autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), 6000);
+
+// Pause auto-play on hover
+const carousel = document.querySelector('.projects-carousel');
+if (carousel) {
+    carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+    carousel.addEventListener('mouseleave', () => {
+        autoPlayInterval = setInterval(() => goToSlide(currentIndex + 1), 6000);
     });
 }
-
-// Event Listeners for global buttons
-if (nextBtn && prevBtn) {
-    nextBtn.addEventListener('click', () => rotateWheel('next'));
-    prevBtn.addEventListener('click', () => rotateWheel('prev'));
-}
-
-// Initialize on load
-initWheel();
-
-// Optional: Re-calculate on resize if we want the wheel to be responsive
-window.addEventListener('resize', () => {
-    // Basic responsive implementation: shrink radius on small screens
-    const width = window.innerWidth;
-    let cardWidth = width < 768 ? 320 : 450;
-
-    // Update CSS card width
-    document.documentElement.style.setProperty('--wheel-card-width', cardWidth + 'px');
-    slides.forEach(slide => slide.style.width = cardWidth + 'px');
-    track.style.width = cardWidth + 'px';
-
-    // Recalculate
-    radius = Math.round((cardWidth / 2) / Math.tan(Math.PI / numSlides));
-    if (numSlides <= 2) radius = cardWidth;
-
-    initWheel();
-});
 
 // --- Image Modal Logic --- //
 const modal = document.getElementById("imageModal");

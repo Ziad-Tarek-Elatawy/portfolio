@@ -1,0 +1,14 @@
+I have developed an end-to-end Interactive Dashboard to analyze and visualize the Ford GoBike urban mobility data. I built this project entirely in Python using Plotly and Dash, transforming raw trip data into a dynamic, professional, and user-friendly web application.
+
+Key achievements and features I implemented:
+- Developed dynamic KPIs for real-time tracking of Total Trips, Average Trip Duration, Total Subscribers, and Active Stations.
+- Designed interactive temporal charts showing trips by weekday and hour to precisely identify peak commuting trends.
+- Analyzed user behavior by creating clear visual comparisons between Subscribers and Regular Customers, broken down by gender, to understand user demographics.
+- Executed geographic station analysis to visually highlight the most popular starting stations for optimized bike distribution.
+- Programmed a sleek sidebar equipped with dynamic filters, allowing users to effortlessly slice and dice the data based on their needs.
+
+I also handled the complete data lifecycle, from data cleaning and feature engineering (e.g., calculating trip duration in minutes and creating age groups) to designing a scalable, production-ready UI architecture with reusable components.
+
+This project demonstrates my deep expertise in Exploratory Data Analysis (EDA) and building Interactive Web Applications, proving my ability to turn complex datasets into strategic, impactful business tools.
+
+If you are looking for a professional to build your next data-driven web app, let's connect!
