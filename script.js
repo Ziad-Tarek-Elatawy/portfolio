@@ -166,6 +166,13 @@ const projectsData = [
         link: "#"
     },
     {
+        title: "Boston Housing Predictor",
+        description: "An end-to-end Machine Learning web app to predict Boston housing prices using a fine-tuned Decision Tree Regressor and a lightning-fast FastAPI REST API.",
+        tech: ["Python", "Machine Learning", "FastAPI", "Scikit-Learn"],
+        image: "Projects/Boston Housing Predictor/Boston Housing Predictor.png",
+        link: "#"
+    },
+    {
         title: "Face Mask Detection",
         description: "Automated surveillance system using CNNs to detect face masks in real-time video feeds for safety compliance.",
         tech: ["Python", "OpenCV", "TensorFlow", "CNN"],

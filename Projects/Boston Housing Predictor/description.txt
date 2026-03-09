@@ -1,0 +1,33 @@
+Title: End-to-End Machine Learning Web App for Real Estate Price Prediction
+
+Description: "I designed and developed a complete, end-to-end Machine Learning pipeline to predict Boston housing prices based on various socio-economic features.
+
+Starting with the raw dataset, I performed comprehensive Exploratory Data Analysis (EDA) and feature engineering using Pandas and NumPy. For the machine learning phase, I trained a highly optimized Decision Tree Regressor. To ensure robust performance and prevent overfitting, I utilized Grid Search Cross-Validation (GridSearchCV) combined with ShuffleSplit, fine-tuning hyperparameters to lock in the optimal R-squared accuracy score.
+
+Instead of stopping at an offline Jupyter Notebook, I took this project to production. I engineered a lightning-fast, asynchronous REST API using FastAPI to securely serve the serialized ML model. Finally, I built a modern, fully responsive web frontend (using HTML/CSS and Jinja2) featuring a sleek glassmorphism UI, allowing end-users to input features and receive real-time, accurate property valuations.
+
+💡 Core Technologies Used:
+
+Machine Learning: Python, Scikit-learn, Pandas, NumPy
+Backend / API: FastAPI, Uvicorn, Jinja2
+Frontend: HTML5, CSS3 (Modern UI/UX Design)
+DevOps / Version Control: Git & GitHub
+Are you looking for an ML Engineer capable of turning your raw data into a fully deployed, high-performing web application? I can help you build your end-to-end system. Let's talk!"
+
+🇸🇦 النسخة العربية (Arabic Version)
+عنوان المشروع: تطبيق ويب متكامل للذكاء الاصطناعي للتنبؤ بأسعار العقارات (End-to-End ML Pipeline)
+
+الوصف: "قمت بتصميم وتطوير تطبيق ويب ذكي ومتكامل (End-to-End) يعتمد على خوارزميات تعلم الآلة (Machine Learning) للتنبؤ المستقبلي بأسعار المنازل والعقارات بناءً على تأثير العوامل الديموغرافية والاجتماعية.
+
+بدأت دورة حياة المشروع بإجراء تحليل استكشافي عميق للبيانات (EDA) ومعالجتها باستخدام مكتبات Pandas و NumPy. بعد ذلك، قمت ببناء وتدريب نموذج تنبؤي قوي يعتمد على خوارزمية Decision Tree Regressor. ولضمان أعلى دقة للنموذج وتجنب مشكلة الـ Overfitting، طبقت تقنيات متقدمة مثل Grid Search Cross-Validation للوصول إلى أفضل المعلمات (Hyperparameters) الممكنة.
+
+لم يقتصر عملي على بناء الأكواد الرياضية في بيئة الـ Jupyter فقط، بل قمت بتحويل هذا النموذج إلى نظام برمجي حقيقي. لقد هَندست وبنيت واجهة برمجية (REST API) قوية وسريعة جداً باستخدام إطار عمل FastAPI لرفع النموذج على خوادم الإنتاج. وفي النهاية، صممت واجهة مستخدم تفاعلية (Frontend) بتصميم زجاجي (Glassmorphism) عصري وعالي الاستجابة، مما يتيح للمستخدمين النهائيين تجربة التنبؤ بالأسعار لحظياً وبكل سلاسة.
+
+💡 التقنيات والمهارات المستخدمة:
+
+الذكاء الاصطناعي: Python, Scikit-learn, Pandas, NumPy
+تطوير الباك-إند: FastAPI, Uvicorn, API Architecture
+واجهة المستخدم: HTML5, CSS3, Jinja2 Templates
+إدارة الأكواد: Git & Git Version Control
+إذا كنت تبحث عن مهندس بيانات وذكاء اصطناعي يستطيع أخذ مشروعك من مجرد فكرة وبيانات خام إلى منتج برمجي متكامل يعمل على الويب بفعالية، يسعدني جداً التعاون معك لبناء مشروعك القادم!"
+
