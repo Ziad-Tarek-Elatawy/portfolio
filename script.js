@@ -57,6 +57,19 @@ burger.addEventListener('click', () => {
     burger.classList.toggle('toggle');
 });
 
+// Close menu when a link is clicked (Mobile)
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (nav.classList.contains('nav-active')) {
+            nav.classList.remove('nav-active');
+            burger.classList.remove('toggle');
+            navLinks.forEach((navLink) => {
+                navLink.style.animation = '';
+            });
+        }
+    });
+});
+
 // Custom Cursor (Optional - Simple Dot Follower)
 const cursorDot = document.querySelector("[data-cursor-dot]");
 const cursorOutline = document.querySelector("[data-cursor-outline]");
@@ -159,6 +172,20 @@ window.addEventListener('resize', () => {
 // --- Projects Data & Carousel Logic --- //
 const projectsData = [
     {
+        title: "SmartResolve AI",
+        description: "An AI-powered platform utilizing Advanced NLP to automatically classify, prioritize, and route complaints and suggestions based on sentiment analysis and topic detection.",
+        tech: ["Python", "NLP", "LLMs", "Sentiment Analysis"],
+        image: "Projects/SmartResolve AI/SmartResolve AI screenshot.jpg",
+        link: "#"
+    },
+    {
+        title: "Mostaql Smart Monitor",
+        description: "An autonomous web-monitoring pipeline using n8n that acts as a 24/7 lead sniper, silently scraping platforms and dispatching real-time Telegram alerts for new projects.",
+        tech: ["n8n", "Automation", "Web Scraping", "Telegram API"],
+        image: "Projects/Mostaql Smart Monitor/🔍 Mostaql Smart Monitor [Ziad AI].png",
+        link: "#"
+    },
+    {
         title: "Ford GoBike Interactive Dashboard",
         description: "An end-to-end Interactive Dashboard to analyze and visualize the Ford GoBike urban mobility data using Plotly and Dash, transforming raw trip data into a dynamic web application.",
         tech: ["Python", "Plotly", "Dash", "EDA", "Data Engineering"],
@@ -177,13 +204,6 @@ const projectsData = [
         description: "Automated surveillance system using CNNs to detect face masks in real-time video feeds for safety compliance.",
         tech: ["Python", "OpenCV", "TensorFlow", "CNN"],
         image: "Projects/Face Mask Detection/Face Mask Detection screenshot.jpg",
-        link: "#"
-    },
-    {
-        title: "SmartResolve AI",
-        description: "An AI-powered platform utilizing Advanced NLP to automatically classify, prioritize, and route complaints and suggestions based on sentiment analysis and topic detection.",
-        tech: ["Python", "NLP", "LLMs", "Sentiment Analysis"],
-        image: "Projects/SmartResolve AI/SmartResolve AI screenshot.jpg",
         link: "#"
     },
     {
