@@ -106,61 +106,176 @@ const observer = new IntersectionObserver((entries) => {
 const hiddenElements = document.querySelectorAll('.hidden, .fade-in-left, .fade-in-right, .fade-in-up');
 hiddenElements.forEach((el) => observer.observe(el));
 
-// Matrix Rain Effect
+// --- Neural Network Animation ---
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const nums = '0123456789';
-const tech = '<>{}[]/\\|;:"!@#$%^&*()_+~`';
-const robots = '🤖👾'; // Added robots/aliens
+// --- Build layered neuron network ---
+function buildNetwork() {
+    const layers = [];
+    const layerCount = 6;
+    const nodesPerLayer = [4, 6, 8, 8, 6, 4];
+    const margin = { x: canvas.width * 0.1, y: canvas.height * 0.15 };
+    const usableW = canvas.width - margin.x * 2;
+    const usableH = canvas.height - margin.y * 2;
 
-const alphabet = katakana + latin + nums + tech + robots;
-
-const fontSize = 16;
-const columns = canvas.width / fontSize;
-
-const rainDrops = [];
-
-for (let x = 0; x < columns; x++) {
-    rainDrops[x] = 1;
+    for (let l = 0; l < layerCount; l++) {
+        const layerNodes = [];
+        const count = nodesPerLayer[l];
+        const x = margin.x + (usableW / (layerCount - 1)) * l;
+        for (let n = 0; n < count; n++) {
+            const y = margin.y + (usableH / (count - 1)) * n;
+            const colors = [
+                'rgba(168, 85, 247,',
+                'rgba(216, 180, 254,',
+                'rgba(236, 72, 153,',
+                'rgba(192, 132, 252,',
+            ];
+            layerNodes.push({
+                x, y,
+                baseX: x,
+                baseY: y,
+                radius: Math.random() * 2 + 3,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                glow: 0,
+                pulseOffset: Math.random() * Math.PI * 2,
+                // small drift
+                driftX: (Math.random() - 0.5) * 18,
+                driftY: (Math.random() - 0.5) * 18,
+            });
+        }
+        layers.push(layerNodes);
+    }
+    return layers;
 }
 
-const fps = 15;
-const frameInterval = 1000 / fps;
-let lastDrawTime = 0;
+let layers = buildNetwork();
 
-const draw = (currentTime) => {
-    requestAnimationFrame(draw);
+// --- Signals that travel along edges ---
+const signals = [];
 
-    if (!currentTime) currentTime = performance.now();
-    const deltaTime = currentTime - lastDrawTime;
+function spawnSignal() {
+    // Pick a random layer (not last) and random node
+    const l = Math.floor(Math.random() * (layers.length - 1));
+    const fromNode = layers[l][Math.floor(Math.random() * layers[l].length)];
+    const toNode = layers[l + 1][Math.floor(Math.random() * layers[l + 1].length)];
+    const colors = ['rgba(168,85,247,', 'rgba(236,72,153,', 'rgba(216,180,254,'];
+    signals.push({
+        fromX: fromNode.x, fromY: fromNode.y,
+        toX: toNode.x, toY: toNode.y,
+        progress: 0,
+        speed: Math.random() * 0.008 + 0.005,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        targetNode: toNode,
+    });
+}
 
-    if (deltaTime < frameInterval) return;
-    lastDrawTime = currentTime - (deltaTime % frameInterval);
+// Spawn initial signals
+for (let i = 0; i < 12; i++) spawnSignal();
 
-    ctx.fillStyle = 'rgba(11, 13, 23, 0.05)'; // Fade effect
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+let animTime = 0;
 
-    ctx.fillStyle = '#a855f7'; // Purple text
-    ctx.font = fontSize + 'px monospace';
+function drawNetwork() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let i = 0; i < rainDrops.length; i++) {
-        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+    animTime += 0.012;
 
-        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            rainDrops[i] = 0;
+    // --- Drift nodes gently ---
+    layers.forEach(layer => {
+        layer.forEach(node => {
+            node.x = node.baseX + Math.sin(animTime + node.pulseOffset) * node.driftX * 0.4;
+            node.y = node.baseY + Math.cos(animTime * 0.7 + node.pulseOffset) * node.driftY * 0.4;
+            node.glow = Math.max(0, node.glow - 0.04); // fade glow
+        });
+    });
+
+    // --- Draw connections between adjacent layers ---
+    for (let l = 0; l < layers.length - 1; l++) {
+        for (let a = 0; a < layers[l].length; a++) {
+            for (let b = 0; b < layers[l + 1].length; b++) {
+                const nA = layers[l][a];
+                const nB = layers[l + 1][b];
+                const alpha = 0.07 + nA.glow * 0.1 + nB.glow * 0.1;
+
+                const grad = ctx.createLinearGradient(nA.x, nA.y, nB.x, nB.y);
+                grad.addColorStop(0, `${nA.color}${alpha})`);
+                grad.addColorStop(1, `${nB.color}${alpha})`);
+
+                ctx.beginPath();
+                ctx.moveTo(nA.x, nA.y);
+                ctx.lineTo(nB.x, nB.y);
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 0.6 + nA.glow * 0.8;
+                ctx.stroke();
+            }
         }
-        rainDrops[i]++;
     }
-};
 
-requestAnimationFrame(draw);
+    // --- Draw neurons ---
+    layers.forEach(layer => {
+        layer.forEach(node => {
+            const glowIntensity = 8 + node.glow * 20;
+            ctx.shadowBlur = glowIntensity;
+            ctx.shadowColor = `${node.color}1)`;
+
+            // Outer ring (dim)
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius + 2, 0, Math.PI * 2);
+            ctx.strokeStyle = `${node.color}${0.15 + node.glow * 0.4})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // Core
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `${node.color}${0.5 + node.glow * 0.5})`;
+            ctx.fill();
+
+            ctx.shadowBlur = 0;
+        });
+    });
+
+    // --- Draw & update signals ---
+    for (let i = signals.length - 1; i >= 0; i--) {
+        const s = signals[i];
+        s.progress += s.speed;
+
+        const x = s.fromX + (s.toX - s.fromX) * s.progress;
+        const y = s.fromY + (s.toY - s.fromY) * s.progress;
+
+        // Glowing dot traveling along edge
+        ctx.shadowBlur = 18;
+        ctx.shadowColor = `${s.color}1)`;
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = `${s.color}1)`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Trail behind the signal
+        ctx.beginPath();
+        ctx.moveTo(s.fromX + (s.toX - s.fromX) * Math.max(0, s.progress - 0.15),
+            s.fromY + (s.toY - s.fromY) * Math.max(0, s.progress - 0.15));
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = `${s.color}0.5)`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        if (s.progress >= 1) {
+            // Activate target node
+            s.targetNode.glow = 1;
+            signals.splice(i, 1);
+            spawnSignal();
+        }
+    }
+
+    requestAnimationFrame(drawNetwork);
+}
+
+drawNetwork();
 
 // Resize canvas on window resize
 window.addEventListener('resize', () => {
