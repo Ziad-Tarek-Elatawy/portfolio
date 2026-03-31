@@ -13,21 +13,25 @@ function typeEffect() {
     const currentWord = words[wordIndex];
 
     if (isDeleting) {
-        typingText.textContent = currentWord.substring(0, charIndex--);
+        charIndex--;
     } else {
-        typingText.textContent = currentWord.substring(0, charIndex++);
+        charIndex++;
     }
 
+    typingText.textContent = currentWord.substring(0, charIndex);
+
+    let typeSpeed = isDeleting ? 40 : 100; // Faster backspacing and typing
+
     if (!isDeleting && charIndex === currentWord.length) {
+        typeSpeed = 3000; // Wait 3 seconds at the end
         isDeleting = true;
-        setTimeout(typeEffect, 2000);
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         wordIndex = (wordIndex + 1) % words.length;
-        setTimeout(typeEffect, 500);
-    } else {
-        setTimeout(typeEffect, isDeleting ? 100 : 200);
+        typeSpeed = 500; // Wait half a second before next word
     }
+
+    setTimeout(typeEffect, typeSpeed);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -105,6 +109,29 @@ const observer = new IntersectionObserver((entries) => {
 
 const hiddenElements = document.querySelectorAll('.hidden, .fade-in-left, .fade-in-right, .fade-in-up');
 hiddenElements.forEach((el) => observer.observe(el));
+
+// ScrollSpy for Navigation Links
+const sections = document.querySelectorAll('section');
+const navItems = document.querySelectorAll('.nav-links li a');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+
+    sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        // Adjust the offset (e.g., 150) so it changes class when the section is mostly in view
+        if (scrollY >= sectionTop - 150) { 
+            current = section.getAttribute('id');
+        }
+    });
+
+    navItems.forEach((a) => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === `#${current}`) {
+            a.classList.add('active');
+        }
+    });
+});
 
 // --- Neural Network Animation ---
 const canvas = document.getElementById('matrix-canvas');

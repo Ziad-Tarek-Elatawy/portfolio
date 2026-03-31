@@ -179,8 +179,11 @@ nav {
     font-weight: 500;
 }
 
-.nav-links li a:hover {
+.nav-links li a:hover,
+.nav-links li a.active {
     color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+    /* subtle glow to make it stand out */
 }
 
 .burger {
