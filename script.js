@@ -120,7 +120,7 @@ window.addEventListener('scroll', () => {
     sections.forEach((section) => {
         const sectionTop = section.offsetTop;
         // Adjust the offset (e.g., 150) so it changes class when the section is mostly in view
-        if (scrollY >= sectionTop - 150) { 
+        if (scrollY >= sectionTop - 150) {
             current = section.getAttribute('id');
         }
     });
@@ -353,6 +353,13 @@ const projectsData = [
         description: "Desktop application for managing hospital departments, staff, and patients with JSON data persistence.",
         tech: ["Python", "OOP", "JSON", "CLI"],
         image: "Projects/Hospital Management System/HMS screenshot.jpg",
+        link: "#"
+    },
+    {
+        title: "CharityML Donor Prediction",
+        description: "An end-to-end ML solution using AdaBoost to predict potential donors, integrated with a FastAPI backend and a premium dashboard for batch campaign evaluations and dynamic feature insights.",
+        tech: ["Python", "Machine Learning", "FastAPI", "AdaBoost"],
+        image: "Projects/CharityML Donor Prediction/CharityML Donor Prediction.png",
         link: "#"
     }
 ];
